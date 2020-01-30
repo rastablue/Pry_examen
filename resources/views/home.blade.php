@@ -15,9 +15,16 @@
                     @endif
 
                     You are logged in!
+
                 </div>
             </div>
         </div>
     </div>
 </div>
 @endsection
+
+<html>
+<head>
+<META HTTP-EQUIV="REFRESH" CONTENT="3;URL=/users">
+</head>
+</html>
