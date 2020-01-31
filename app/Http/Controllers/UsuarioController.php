@@ -3,10 +3,15 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App;
 use App\User;
 
 class UsuarioController extends Controller
 {
+    public function __construct()
+    {
+    $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -15,7 +20,7 @@ class UsuarioController extends Controller
     public function index()
     {
         $usersId = auth()->user()->id;
-        $users = User::where('id', $usersId)->paginate(5);
+        $users = App\User::where('id', $usersId)->paginate(5);
         return view('users.consultas',compact('users'));
     }
 
@@ -26,7 +31,9 @@ class UsuarioController extends Controller
      */
     public function create()
     {
-        //
+        $usersId = auth()->user()->id;
+        $users = App\User::where('id', $usersId);
+        return view('users.crear',compact('users'));
     }
 
     /**
@@ -48,7 +55,8 @@ class UsuarioController extends Controller
      */
     public function show($id)
     {
-        //
+        $user = User::findOrfail($id);
+        return  view('users.actualizar', compact('user'));
     }
 
     /**
@@ -59,9 +67,7 @@ class UsuarioController extends Controller
      */
     public function edit($id)
     {
-        $users = App\User::findOrFail($id);
-
-        return view('users.actualizar',compact('users'));
+        //
     }
 
     /**

@@ -7,20 +7,19 @@
             <div class="card">
                 <div class="card-header d-flex justify-content-between align-items-center">
                     <span>Agregar Nota</span>
-                    <a href="/users" class="btn btn-primary btn-sm">Volver a lista de notas...</a>
                 </div>
                 <div class="card-body">
                   @if ( session('mensaje') )
                     <div class="alert alert-success">{{ session('mensaje') }}</div>
                   @endif
-                  <form method="POST" action="/users">
+
+                  <form action=" " method="POST">
+
+                    @method('PUT')
                     @csrf
-                    <input
-                      type="text"
-                      name="name"
-                      placeholder="{{ $user->name }} "
-                      class="form-control mb-2"
-                    />
+
+                    <input type="text" name="nombre" placeholder="" class="form-control mb-2">
+
                     <input
                       type="text"
                       name="descripcion"

@@ -15,6 +15,11 @@ class User extends Authenticatable
      *
      * @var array
      */
+    public function usuarios()
+    {
+        return $this->hasMany('App\Vehiculo');
+    }
+
     protected $fillable = [
         'ced', 'name', 'apepater','apemater', 'direc', 'tlf', 'email', 'password',
     ];

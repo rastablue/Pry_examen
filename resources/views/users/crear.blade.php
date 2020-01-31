@@ -13,12 +13,12 @@
                   @if ( session('mensaje') )
                     <div class="alert alert-success">{{ session('mensaje') }}</div>
                   @endif
-                  <form method="POST" action="/users">
+                  <form method="POST" action="/notas">
                     @csrf
                     <input
                       type="text"
-                      name="name"
-                      placeholder="{{ $user->name }} "
+                      name="nombre"
+                      placeholder="{{ $users->ced }} "
                       class="form-control mb-2"
                     />
                     <input

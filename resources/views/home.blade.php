@@ -25,6 +25,6 @@
 
 <html>
 <head>
-<META HTTP-EQUIV="REFRESH" CONTENT="3;URL=/users">
+<META HTTP-EQUIV="REFRESH" CONTENT="1;URL=/users">
 </head>
 </html>
