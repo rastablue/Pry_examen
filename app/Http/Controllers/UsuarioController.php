@@ -3,8 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Providers\RouteServiceProvider;
+use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 use App;
 use App\User;
+use App\Vehiculo;
 
 class UsuarioController extends Controller
 {
@@ -19,9 +25,9 @@ class UsuarioController extends Controller
      */
     public function index()
     {
-        $usersId = auth()->user()->id;
-        $users = App\User::where('id', $usersId)->paginate(5);
-        return view('users.consultas',compact('users'));
+        $user_id = auth()->user()->id;
+        $vehiculos = App\Vehiculo::where('user_id', $user_id)->get();
+        return view('users.consultas', compact('vehiculos'));
     }
 
     /**
@@ -80,24 +86,16 @@ class UsuarioController extends Controller
     public function update(Request $request, $id)
     {
         $request -> validate([
-            'ced' => ['required', 'string', 'max:255'],
-            'name' => ['required', 'string', 'max:255'],
-            'apepater' => ['required', 'string', 'max:255'],
-            'apemater' => ['required', 'string', 'max:255'],
             'direc' => ['required', 'string', 'max:255'],
             'tlf' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
         ]);
-
-        $users = new User();
-        $users->ced = $request->ced;
-        $users->name = $request->name;
-        $users->apepater = $request->apepater;
-        $users->apemater = $request->apemater;
+        
+        $users = App\User::findOrFail($id);
         $users->direc = $request->direc;
         $users->tlf = $request->tlf;
         $users->email = $request->email;
-        $users->id = auth()->user()->id;
+        $users->password = Hash::make($request->password);
 
         $users->save();
 

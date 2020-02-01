@@ -4,6 +4,10 @@ namespace App\Providers;
 
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Route;
+use App;
+use App\User;
+use App\Vehiculo;
+use App\Tipovehi;
 
 class RouteServiceProvider extends ServiceProvider
 {

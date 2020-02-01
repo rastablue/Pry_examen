@@ -9,7 +9,7 @@
                     <div class="card-header">{{ __('Nuevo Ingreso de Vehiculo') }}</div>
 
                     <div class="card-body">
-                        <form method="POST" action="/vehiculos">
+                        <form method="POST" action="/users">
                             @csrf
                             {{-- Placa --}}
                             <div class="form-group row">
@@ -62,7 +62,7 @@
                                 <label for="color" class="col-md-4 col-form-label text-md-right">{{ __('Color') }}</label>
 
                                 <div class="col-md-6">
-                                    <input id="color" type="text" pattern="[A-Za-z]{1,25}" class="form-control @error('color') is-invalid @enderror" name="color" value="{{ old('color') }}" required autocomplete="color" autofocus>
+                                    <input id="color" type="text" class="form-control @error('color') is-invalid @enderror" name="color" value="{{ old('color') }}" required autocomplete="color" autofocus>
 
                                     @error('color')
                                         <span class="invalid-feedback" role="alert">
@@ -117,6 +117,10 @@
 
                                 </div>
                             </div>
+
+                            {{-- Estado Proceso --}}
+                            
+                            <input id="estado" type="hidden" name="estado" value="a">
 
                             {{-- btn --}}
                             <div class="form-group row mb-0">

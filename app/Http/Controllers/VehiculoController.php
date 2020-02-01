@@ -20,19 +20,6 @@ class VehiculoController extends Controller
     $this->middleware('auth');
     }
 
-    protected function validator(array $data)
-    {
-        return Validator::make($data, [
-            'placa' => ['required', 'string', 'max:255'],
-            'marca' => ['required', 'string', 'max:255'],
-            'modelo' => ['required', 'string', 'max:255'],
-            'color' => ['required', 'string', 'max:255'],
-            'observa' => ['required', 'text'],
-            'user_id' => ['required', 'bigint', 'max:20'],
-            'password' => ['required', 'string', 'min:6', 'confirmed'],
-        ]);
-    }
-
     public function index()
     {
         //
@@ -68,6 +55,7 @@ class VehiculoController extends Controller
         $vehiculo->observa = $request->observa;
         $vehiculo->user_id = $id_users->id;
         $vehiculo->tipovehis_id = $request->tipovehis_id;
+        $vehiculo->estado = $request->estado;
         $vehiculo->save();
 
         return back()->with('mensaje', 'Nota Agregada!');

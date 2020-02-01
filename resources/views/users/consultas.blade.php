@@ -8,38 +8,42 @@
             <div class="card">
                 <div class="card-header d-flex justify-content-between align-items-center">
                     <span>Los Tramites de {{auth()->user()->name}}</span>
-                <a href="/users/1" class="btn btn-primary btn-sm">Nueva Nota</a>
                 </div>
 
                 <div class="card-body">
                     <table class="table">
                         <thead>
                             <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">Nombre</th>
-                            <th scope="col">Descripción</th>
+                            <th scope="col">ID</th>
+                            <th scope="col">Placa</th>
+                            <th scope="col">Marca</th>
+                            <th scope="col">Modelo</th>
+                            <th scope="col">Color</th>
+                            <th scope="col">Observacion</th>
                             <th scope="col">Estado</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($users as $item)
+                            @foreach ($vehiculos as $item)
                             <tr>
                                 <th scope="row">{{ $item->id }}</th>
-                                <td>{{ $item->name }}</td>
-                                <td>{{ $item->apepater }}</td>
+                                <td>{{ $item->placa }}</td>
+                                <td>{{ $item->marca }}</td>
+                                <td>{{ $item->modelo }}</td>
+                                <td>{{ $item->color }}</td>
+                                <td>{{ $item->observa }}</td>
                                 <td>
-                                @if ($item->name==='Matin')
-                                    <button class="btn btn-success btn-sm" type="submit" disabled="true">Finalizado</button>
+                                @if ($item->estado==='a')
+                                    <button class="btn btn-success btn-sm" type="submit" disabled="true">En proceso</button>
 
                                 @else
-                                    <button class="btn btn-danger btn-sm" type="submit" disabled="true">En proceso</button>
+                                    <button class="btn btn-danger btn-sm" type="submit" disabled="true">Finalizado</button>
                                 @endif
                             </td>
                             </tr>
                             @endforeach
                         </tbody>
                     </table>
-                    {{$users->links()}}
                 {{-- fin card body --}}
                 </div>
             </div>
