@@ -12,7 +12,7 @@
                 </div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('users.update', $user->id) }}">
+                    <form method="POST" action="{{ route('empleados.update', $empleado->id) }}">
                         @method('PUT')
                         @csrf
 
@@ -21,7 +21,7 @@
                             <label for="direc" class="col-md-4 col-form-label text-md-right">{{ __('Direccion') }}</label>
 
                             <div class="col-md-6">
-                                <input id="direc" type="text" placeholder="{{ $user->direc }}" class="form-control @error('direc') is-invalid @enderror" name="direc" value="{{ old('direc') }}" required autocomplete="name" autofocus>
+                                <input id="direc" type="text" placeholder="{{ $empleado->direc }}" class="form-control @error('direc') is-invalid @enderror" name="direc" value="{{ old('direc') }}" required autocomplete="name" autofocus>
 
                                 @error('direc')
                                     <span class="invalid-feedback" role="alert">
@@ -36,7 +36,7 @@
                             <label for="tlf" class="col-md-4 col-form-label text-md-right">{{ __('Telefono') }}</label>
 
                             <div class="col-md-6">
-                                <input id="tlf" type="text" pattern="[0-9]{7,10}" placeholder="{{ $user->tlf }}" class="form-control @error('tlf') is-invalid @enderror" name="tlf" value="{{ old('tlf') }}" required autocomplete="name" autofocus>
+                                <input id="tlf" type="text" pattern="[0-9]{7,10}" placeholder="{{ $empleado->tlf }}" class="form-control @error('tlf') is-invalid @enderror" name="tlf" value="{{ old('tlf') }}" required autocomplete="name" autofocus>
 
                                 @error('tlf')
                                     <span class="invalid-feedback" role="alert">
@@ -51,7 +51,7 @@
                             <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
 
                             <div class="col-md-6">
-                                <input id="email" type="email" placeholder="{{ $user->email }}" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
+                                <input id="email" type="email" placeholder="{{ $empleado->email }}" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
 
                                 @error('email')
                                     <span class="invalid-feedback" role="alert">

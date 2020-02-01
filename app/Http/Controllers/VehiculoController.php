@@ -55,10 +55,9 @@ class VehiculoController extends Controller
         $vehiculo->observa = $request->observa;
         $vehiculo->user_id = $id_users->id;
         $vehiculo->tipovehis_id = $request->tipovehis_id;
-        $vehiculo->estado = $request->estado;
         $vehiculo->save();
 
-        return back()->with('mensaje', 'Nota Agregada!');
+        return view('home');
     }
 
     /**

@@ -11,8 +11,12 @@ use Illuminate\Support\Facades\Validator;
 use App;
 use App\User;
 use App\Vehiculo;
+use App\Tipovehi;
+use App\Empleado;
+use App\Mante;
 
-class UsuarioController extends Controller
+
+class MantenimientoController extends Controller
 {
     public function __construct()
     {
@@ -25,9 +29,8 @@ class UsuarioController extends Controller
      */
     public function index()
     {
-        $user_id = auth()->user()->id;
-        $vehiculos = App\Vehiculo::where('user_id', $user_id)->get();
-        return view('vehiculos.consultas', compact('vehiculos'));
+        $mantenimientos = App\Mante::all();
+        return view('mantenimientos.consultas', compact('mantenimientos'));
     }
 
     /**
@@ -37,7 +40,7 @@ class UsuarioController extends Controller
      */
     public function create()
     {
-        //
+        return view('mantenimientos.crear');
     }
 
     /**
@@ -59,8 +62,7 @@ class UsuarioController extends Controller
      */
     public function show($id)
     {
-        $user = User::findOrfail($id);
-        return  view('users.actualizar', compact('user'));
+        //
     }
 
     /**
@@ -83,21 +85,7 @@ class UsuarioController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $request -> validate([
-            'direc' => ['required', 'string', 'max:255'],
-            'tlf' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-        ]);
-
-        $users = App\User::findOrFail($id);
-        $users->direc = $request->direc;
-        $users->tlf = $request->tlf;
-        $users->email = $request->email;
-        $users->password = Hash::make($request->password);
-
-        $users->save();
-
-        return view('home');
+        //
     }
 
     /**

@@ -11,8 +11,11 @@ use Illuminate\Support\Facades\Validator;
 use App;
 use App\User;
 use App\Vehiculo;
+use App\Tipovehi;
+use App\Empleado;
 
-class UsuarioController extends Controller
+
+class EmpleadoController extends Controller
 {
     public function __construct()
     {
@@ -25,9 +28,8 @@ class UsuarioController extends Controller
      */
     public function index()
     {
-        $user_id = auth()->user()->id;
-        $vehiculos = App\Vehiculo::where('user_id', $user_id)->get();
-        return view('vehiculos.consultas', compact('vehiculos'));
+        $empleados = App\Empleado::all();
+        return view('empleados.consultas', compact('empleados'));
     }
 
     /**
@@ -37,7 +39,7 @@ class UsuarioController extends Controller
      */
     public function create()
     {
-        //
+        return view('empleados.crear');
     }
 
     /**
@@ -48,7 +50,20 @@ class UsuarioController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $empleado = new Empleado();
+        $empleado->ced = $request->ced;
+        $empleado->name = $request->name;
+        $empleado->apepater = $request->apepater;
+        $empleado->apemater = $request->apemater;
+        $empleado->direc = $request->direc;
+        $empleado->tlf = $request->tlf;
+        $empleado->email = $request->email;
+        $empleado->password = Hash::make($request->password);
+        $empleado->estado = ($request->estado);
+
+        $empleado->save();
+
+        return view('home');
     }
 
     /**
@@ -59,8 +74,8 @@ class UsuarioController extends Controller
      */
     public function show($id)
     {
-        $user = User::findOrfail($id);
-        return  view('users.actualizar', compact('user'));
+        $empleado = Empleado::findOrfail($id);
+        return  view('empleados.actualizar', compact('empleado'));
     }
 
     /**
@@ -83,21 +98,19 @@ class UsuarioController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $request -> validate([
-            'direc' => ['required', 'string', 'max:255'],
-            'tlf' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-        ]);
+        $empleados = App\Empleado::all();
 
-        $users = App\User::findOrFail($id);
-        $users->direc = $request->direc;
-        $users->tlf = $request->tlf;
-        $users->email = $request->email;
-        $users->password = Hash::make($request->password);
+        $empleado = App\Empleado::findOrFail($id);
+        $empleado->direc = $request->direc;
+        $empleado->tlf = $request->tlf;
+        $empleado->email = $request->email;
+        $empleado->password = Hash::make($request->password);
 
-        $users->save();
+        $empleado->save();
 
-        return view('home');
+        $empleados = App\Empleado::all();
+
+        return view('empleados.consultas', compact('empleados'));
     }
 
     /**

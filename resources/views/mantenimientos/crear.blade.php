@@ -7,7 +7,7 @@
             <div class="col-md-8">
                 <div class="card">
                     <div class="card-header d-flex justify-content-between align-items-center">
-                        <span>Nuevo Ingreso de Vehiculo</span>
+                        <span>Nuevo Mantenimiento</span>
                         <a href="/users" class="btn btn-primary btn-sm">Volver...</a>
                     </div>
 
@@ -122,7 +122,7 @@
                             </div>
 
                             {{-- Estado Proceso --}}
-                            
+
                             <input id="estado" type="hidden" name="estado" value="a">
 
                             {{-- btn --}}
