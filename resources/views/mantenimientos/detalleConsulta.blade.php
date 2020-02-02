@@ -130,7 +130,8 @@
                             </td>
                             <td>
                                 {{
-                                $ss = App\Mante::findOrFail($mantenimientos->id)->vehiculos->where('id', $mantenimientos->vehi_id)->value('tipovehis_id')
+                                $ss = App\Mante::findOrFail($mantenimientos->id)->tipovehiculos->
+                                where('id', $mantenimientos->id)->first()
                                 }}
                             </td>
                           </tr>

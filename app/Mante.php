@@ -11,6 +11,11 @@ class Mante extends Model
         return $this->hasOne(Historial::class, 'mante_id');
     }
 
+    public function tipovehiculos()
+    {
+        return $this->hasManyThrough(Tipovehi::class, Vehiculo::class, 'tipovehis_id', 'id');
+    }
+
     public function empleados()
     {
         return $this->belongsToMany(Empleado::class, 'mantemps', 'mantes_id', 'empleados_id');

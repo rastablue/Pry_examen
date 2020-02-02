@@ -9,6 +9,7 @@ Route::get('/', function () {
     //Obtener los datos del usuario buscando en el campo users_id de la tabla vehiculos
     //$vehi = App\Vehiculo::findOrFail(1);
     //return $vehi->users;
+
 });
 
 Auth::routes();
