@@ -6,8 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Tipovehi extends Model
 {
-    public function tipov()
+    public function vehiculos()
     {
-        return $this->hasMany('App\Vehiculo');
+        return $this->hasMany(Vehiculo::class, 'tipovehis_id');
     }
 }

@@ -6,8 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Historial extends Model
 {
-    public function histomante()
+    public function mantenimientos()
     {
-        return $this->hasOne('App\Mante');
+        return $this->hasOne(Mante::class, 'id');
     }
 }

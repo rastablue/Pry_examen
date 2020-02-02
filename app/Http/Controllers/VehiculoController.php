@@ -22,7 +22,8 @@ class VehiculoController extends Controller
 
     public function index()
     {
-        //
+        $vehiculos = App\Vehiculo::all();
+        return view('vehiculos.consultas', compact('vehiculos'));
     }
 
     /**

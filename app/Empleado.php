@@ -6,8 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Empleado extends Model
 {
-    public function mantes()
+    public function mantenimientos()
     {
-        return $this->belongsToMany('App\Mante');
+        return $this->belongsToMany(Mante::class, 'mantemps', 'empleados_id', 'mantes_id');
     }
 }

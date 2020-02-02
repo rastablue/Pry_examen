@@ -6,8 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Tipomante extends Model
 {
-    public function tipomante()
+    public function mantenimientos()
     {
-        return $this->hasMany('App\Mante');
+        return $this->hasMany(Mante::class, 'tipomantes_id');
     }
+
 }

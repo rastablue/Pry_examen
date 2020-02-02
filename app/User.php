@@ -15,9 +15,9 @@ class User extends Authenticatable
      *
      * @var array
      */
-    public function usuarios()
+    public function vehiculos()
     {
-        return $this->hasMany('App\Vehiculo');
+        return $this->hasMany(Vehiculo::class, 'user_id');
     }
 
     protected $fillable = [

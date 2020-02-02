@@ -14,6 +14,8 @@ use App\Vehiculo;
 use App\Tipovehi;
 use App\Empleado;
 use App\Mante;
+use App\Tipomante;
+use Carbon\Carbon;
 
 
 class MantenimientoController extends Controller
@@ -40,7 +42,8 @@ class MantenimientoController extends Controller
      */
     public function create()
     {
-        return view('mantenimientos.crear');
+        $tipomantes = Tipomante::all();
+        return view('mantenimientos.crear', compact('tipomantes'));
     }
 
     /**
@@ -51,7 +54,23 @@ class MantenimientoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $date = Carbon::now();
+
+        $placa = $request->placa;
+        $vehi_id = Vehiculo::where('placa', $placa)->first();
+
+        $mantenimiento = new Mante();
+        $mantenimiento->nro_ficha = $request->numficha;
+        $mantenimiento->dia_ingre = $date;
+        $mantenimiento->observa = $request->observa;
+        $mantenimiento->costo = $request->costo;
+        $mantenimiento->vehi_id = $vehi_id->id;
+        $mantenimiento->estmante_id = 1;
+        $mantenimiento->tipomantes_id = $request->tipomantes_id;
+
+        $mantenimiento->save();
+
+        return view('home');
     }
 
     /**

@@ -6,8 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Estadomante extends Model
 {
-    public function estadomant()
+    public function mantenimientos()
     {
-        return $this->hasMany('App\Mante');
+        return $this->hasMany(Mante::class, 'estmante_id');
     }
 }
