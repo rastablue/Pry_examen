@@ -81,7 +81,8 @@ class MantenimientoController extends Controller
      */
     public function show($id)
     {
-        //
+        $mantenimientos = App\Mante::findOrFail($id);
+        return view('mantenimientos.detalleConsulta', compact('mantenimientos'));
     }
 
     /**

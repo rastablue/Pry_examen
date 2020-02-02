@@ -11,22 +11,21 @@
                 </div>
 
                 <div class="card-body">
-                    <table class="table">
+                    <table class="table table-hover">
                         <thead>
                             <tr>
-                            <th scope="col">ID</th>
                             <th scope="col">Nro. Ficha Tecnica</th>
                             <th scope="col">Ingreso</th>
                             <th scope="col">Placa</th>
                             <th scope="col">Observacion</th>
                             <th scope="col">Valor del servicio</th>
+                            <th scope="col"></th>
 
                             </tr>
                         </thead>
                         <tbody>
                             @foreach ($mantenimientos as $item)
                             <tr>
-                                <th scope="row">{{ $item->id }}</th>
                                 <td>{{ $item->nro_ficha}}</td>
                                 <td>{{ $item->dia_ingre }}</td>
                                 <td>{{
@@ -34,6 +33,9 @@
                                 </td>
                                 <td>{{ $item->observa }}</td>
                                 <td>{{ $item->costo }}</td>
+                                <td>
+                                    <a href="{{ route('mantenimientos.show', $item) }}" class="btn btn-primary btn-sm">Detalles</a>
+                                </td>
                                 {{-- <td>
                                 @if ($item->estado==='a')
                                     <button class="btn btn-success btn-sm" type="submit" disabled="true">En proceso</button>
