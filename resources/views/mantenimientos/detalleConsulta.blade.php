@@ -8,7 +8,7 @@
             <div class="card">
                 <div class="card-header d-flex justify-content-between align-items-center">
                     <span><h4>Detalles del Mantenimiento: {{ $mantenimientos->nro_ficha }}</h4></span>
-                    <a href="/mantenimientos" class="btn btn-primary btn-sm">Volver...</a>
+                    <a href="javascript:history.back()" class="btn btn-primary btn-sm">Volver</a>
                 </div>
 
                 <div class="card-body">
@@ -131,7 +131,7 @@
                             <td>
                                 {{
                                 $ss = App\Mante::findOrFail($mantenimientos->id)->tipovehiculos->
-                                where('id', $mantenimientos->id)->first()
+                                where('id', $mantenimientos->vehi_id)->first()
                                 }}
                             </td>
                           </tr>

@@ -8,7 +8,7 @@
                 <div class="card">
                     <div class="card-header d-flex justify-content-between align-items-center">
                         <span>Nuevo Mantenimiento</span>
-                        <a href="/users" class="btn btn-primary btn-sm">Volver...</a>
+                        <a href="javascript:history.back()" class="btn btn-primary btn-sm">Volver</a>
                     </div>
 
                     <div class="card-body">

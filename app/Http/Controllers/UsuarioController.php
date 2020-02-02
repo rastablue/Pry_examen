@@ -26,8 +26,8 @@ class UsuarioController extends Controller
     public function index()
     {
         $user_id = auth()->user()->id;
-        $vehiculos = App\Vehiculo::where('user_id', $user_id)->get();
-        return view('vehiculos.consultas', compact('vehiculos'));
+        $user = App\User::all();
+        return view('users.consultas', compact('user'));
     }
 
     /**
