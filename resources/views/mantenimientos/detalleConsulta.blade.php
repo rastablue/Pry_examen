@@ -91,7 +91,7 @@
                                                         <img class="img-responsive img-rounded" src="{{ asset('images/correcto.png') }}"><br/>
 
                                                         {{
-                                                            $estado = App\Mante::findOrFail($mantenimientos->id)->estadomantes->
+                                                            $estado = App\Mante::findOrFail($mantenimientos->estmante_id)->estadomantes->
                                                             where('id', $mantenimientos->estmante_id)->value('estadomante')
                                                         }}
 

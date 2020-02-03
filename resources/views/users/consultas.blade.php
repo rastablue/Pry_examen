@@ -13,14 +13,15 @@
                 <div class="card-body">
                     <table class="table">
                         <thead>
-                            <tr>
+                            <tr class="table-secondary">
                                 <th scope="col">Cedula</th>
                                 <th scope="col">Nombre</th>
                                 <th scope="col" colspan="1">Apellidos</th>
                                 <th></th>
-                                <th scope="col">Direccion</th>
+                                <th scope="col" width="210px">Direccion</th>
                                 <th scope="col">Telefono</th>
                                 <th scope="col">E-mail</th>
+                                <th></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -32,14 +33,14 @@
                                 <td>{{ $item->direc }}</td>
                                 <td>{{ $item->tlf }}</td>
                                 <td>{{ $item->email }}</td>
-                                {{-- <td>
-                                @if ($item->estado==='a')
-                                    <button class="btn btn-success btn-sm" type="submit" disabled="true">En proceso</button>
-
-                                @else
-                                    <button class="btn btn-danger btn-sm" type="submit" disabled="true">Finalizado</button>
-                                @endif
-                            </td> --}}
+                                <td>
+                                    <a href="{{ route('users.show', $item) }}">
+                                        <img class="img-responsive img-rounded float-left" src="{{ asset('images/informacion.png') }}">
+                                    </a>
+                                    <a href="{{ route('users.edit', $item) }}">
+                                        <img class="img-responsive img-rounded float-right" src="{{ asset('images/recargar.png') }}">
+                                    </a>
+                                </td>
                             </tr>
                             @endforeach
                         </tbody>

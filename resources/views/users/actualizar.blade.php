@@ -7,8 +7,8 @@
             <div class="card">
 
                 <div class="card-header d-flex justify-content-between align-items-center">
-                    <span>Actualizar Datos</span>
-                    <a href="/users" class="btn btn-primary btn-sm">Volver...</a>
+                    <span>Actualizar Datos de {{ $user->name }}    {{ $user->apepater }}</span>
+                    <a href="javascript:history.back()" class="btn btn-primary btn-sm">Volver</a>
                 </div>
 
                 <div class="card-body">

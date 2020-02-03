@@ -60,7 +60,7 @@ class UsuarioController extends Controller
     public function show($id)
     {
         $user = User::findOrfail($id);
-        return  view('users.actualizar', compact('user'));
+        return  view('users.detalleConsulta', compact('user'));
     }
 
     /**
@@ -71,7 +71,8 @@ class UsuarioController extends Controller
      */
     public function edit($id)
     {
-        //
+        $user = User::findOrfail($id);
+        return  view('users.actualizar', compact('user'));
     }
 
     /**
