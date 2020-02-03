@@ -6,6 +6,7 @@
     <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="card">
+
                 <div class="card-header d-flex justify-content-between align-items-center">
                     <span><h4>Detalles del Mantenimiento: {{ $mantenimientos->nro_ficha }}</h4></span>
                     <a href="javascript:history.back()" class="btn btn-primary btn-sm">Volver</a>
@@ -41,46 +42,80 @@
                                 <td>
                                     @if ($estado = App\Mante::findOrFail($mantenimientos->id)->estadomantes->where('id', $mantenimientos->estmante_id)->value('id') === 1)
 
-                                        <a href="" class="btn btn-primary btn-sm"  onclick="return false">
-                                            {{
-                                                $estado = App\Mante::findOrFail($mantenimientos->id)->estadomantes->
-                                                where('id', $mantenimientos->estmante_id)->value('estadomante')
-                                            }}
-                                        </a>
+                                        <div class="text-center">
+                                            <a>
+                                                <img class="img-responsive img-rounded" src="{{ asset('images/apoyo.png') }}"><br/>
+
+                                                {{
+                                                    $estado = App\Mante::findOrFail($mantenimientos->id)->estadomantes->
+                                                    where('id', $mantenimientos->estmante_id)->value('estadomante')
+                                                }}
+
+                                            </a>
+                                        </div>
 
                                     @else
                                         @if ($estado = App\Mante::findOrFail($mantenimientos->id)->estadomantes->where('id', $mantenimientos->estmante_id)->value('id') === 2)
 
-                                            <a href="" class="btn btn-warning btn-sm"  onclick="return false">
-                                                {{
-                                                    $estado = App\Mante::findOrFail($mantenimientos->id)->estadomantes->
-                                                    where('id', $mantenimientos->estmante_id)->value('estadomante')
-                                                }}
-                                            </a>
+                                            <div class="text-center">
+                                                <a>
+                                                    <img class="img-responsive img-rounded" src="{{ asset('images/reporte.png') }}"><br/>
+
+                                                    {{
+                                                        $estado = App\Mante::findOrFail($mantenimientos->id)->estadomantes->
+                                                        where('id', $mantenimientos->estmante_id)->value('estadomante')
+                                                    }}
+
+                                                </a>
+                                            </div>
+
                                         @else
-                                            <a href="" class="btn btn-success btn-sm"  onclick="return false">
-                                                {{
-                                                    $estado = App\Mante::findOrFail($mantenimientos->id)->estadomantes->
-                                                    where('id', $mantenimientos->estmante_id)->value('estadomante')
-                                                }}
-                                            </a>
+                                            @if ($estado = App\Mante::findOrFail($mantenimientos->id)->estadomantes->where('id', $mantenimientos->estmante_id)->value('id') === 3)
+
+                                                <div class="text-center">
+                                                    <a>
+                                                        <img class="img-responsive img-rounded" aria-hidden="true" src="{{ asset('images/reloj.png') }}"><br/>
+
+                                                        {{
+                                                            $estado = App\Mante::findOrFail($mantenimientos->id)->estadomantes->
+                                                            where('id', $mantenimientos->estmante_id)->value('estadomante')
+                                                        }}
+
+                                                    </a>
+                                                </div>
+
+                                            @else
+
+                                                <div class="text-center">
+                                                    <a>
+                                                        <img class="img-responsive img-rounded" src="{{ asset('images/correcto.png') }}"><br/>
+
+                                                        {{
+                                                            $estado = App\Mante::findOrFail($mantenimientos->id)->estadomantes->
+                                                            where('id', $mantenimientos->estmante_id)->value('estadomante')
+                                                        }}
+
+                                                    </a>
+                                                </div>
+
+                                            @endif
                                         @endif
                                     @endif
 
                                 </td>
                             </tr>
-                        <thead>
-                            <tr class="table-secondary">
-                                <th scope="col" colspan="6">Observaciones:</th>
-
-                            </tr>
-                        </thead>
+                            <thead>
+                                <tr class="table-info">
+                                    <th scope="col" colspan="6">Observaciones:</th>
+                                </tr>
+                            </thead>
                             <tr>
                                 <td colspan="6">{{ $mantenimientos->observa }}</td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
+
             </div>
         </div>
     </div>
@@ -135,11 +170,11 @@
                                 }}
                             </td>
                           </tr>
-                        <thead>
-                            <tr class="table-secondary">
-                                <th scope="col" colspan="5">Observaciones:</th>
-                            </tr>
-                        </thead>
+                            <thead>
+                                <tr class="table-info">
+                                    <th scope="col" colspan="5">Observaciones:</th>
+                                </tr>
+                            </thead>
                           <tr>
                             <td colspan="5">
                                 {{
@@ -150,7 +185,7 @@
 
                         </tbody>
                     </table>
-                {{-- fin card body --}}
+
                 </div>
             </div>
         </div>

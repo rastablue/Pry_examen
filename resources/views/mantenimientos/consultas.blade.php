@@ -11,43 +11,42 @@
                 </div>
 
                 <div class="card-body">
-                    <table class="table table-hover">
-                        <thead>
-                            <tr>
-                            <th scope="col">Nro. Ficha Tecnica</th>
-                            <th scope="col">Ingreso</th>
-                            <th scope="col">Placa</th>
-                            <th scope="col">Observacion</th>
-                            <th scope="col">Valor del servicio</th>
-                            <th scope="col"></th>
-
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($mantenimientos as $item)
-                            <tr>
-                                <td>{{ $item->nro_ficha}}</td>
-                                <td>{{ $item->dia_ingre }}</td>
-                                <td>{{
-                                    $placa = App\Mante::findOrFail($item->id)->vehiculos->where('id', $item->vehi_id)->value('placa')}}
-                                </td>
-                                <td>{{ $item->observa }}</td>
-                                <td>{{ $item->costo }}</td>
-                                <td>
-                                    <a href="{{ route('mantenimientos.show', $item) }}" class="btn btn-primary btn-sm">Detalles</a>
-                                </td>
-                                {{-- <td>
-                                @if ($item->estado==='a')
-                                    <button class="btn btn-success btn-sm" type="submit" disabled="true">En proceso</button>
-
-                                @else
-                                    <button class="btn btn-danger btn-sm" type="submit" disabled="true">Finalizado</button>
-                                @endif
-                            </td> --}}
-                            </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
+                    @foreach ($mantenimientos as $item)
+                        <table class="table mb-5">
+                            <thead>
+                                <tr class="table-secondary">
+                                    <th scope="col">{{ $loop->iteration}}</th>
+                                    <th scope="col">Nro. Ficha Tecnica</th>
+                                    <th scope="col">Ingreso</th>
+                                    <th scope="col">Placa</th>
+                                    <th scope="col">Valor del servicio</th>
+                                    <th scope="col"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td></td>
+                                    <td>{{ $item->nro_ficha}}</td>
+                                    <td>{{ $item->dia_ingre }}</td>
+                                    <td>{{
+                                        $placa = App\Mante::findOrFail($item->id)->vehiculos->where('id', $item->vehi_id)->value('placa')}}
+                                    </td>
+                                    <td>{{ $item->costo }}</td>
+                                    <td>
+                                        <a href="{{ route('mantenimientos.show', $item) }}">
+                                            <img class="img-responsive img-rounded" src="{{ asset('images/informacion.png') }}">
+                                        </a>
+                                    </td>
+                                    <thead>
+                                        <th scope="col" colspan="6" class="table-info">Observaciones:</th>
+                                    </thead>
+                                    <tr>
+                                        <td colspan="6">{{ $item->observa }}</td>
+                                    </tr>
+                                </tr>
+                            </tbody>
+                        </table>
+                    @endforeach
                 {{-- fin card body --}}
                 </div>
             </div>
