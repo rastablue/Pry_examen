@@ -34,7 +34,7 @@
                                     <td>{{ $item->costo }}</td>
                                     <td>
                                         <a href="{{ route('mantenimientos.show', $item) }}">
-                                            <img class="img-responsive img-rounded float-left" src="{{ asset('images/informacion.png') }}">
+                                            <img class="img-responsive img-rounded float-left" src="{{ asset('images/alerta.png') }}">
                                         </a>
                                         <a href="{{ route('mantenimientos.edit', $item) }}">
                                             <img class="img-responsive img-rounded float-right" src="{{ asset('images/recargar.png') }}">

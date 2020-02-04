@@ -2,13 +2,14 @@
 
 @section('content')
 
+<!-- Tabla Detallles del mantenimiento -->
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="card">
 
                 <div class="card-header d-flex justify-content-between align-items-center">
-                    <span><h4>Detalles del Mantenimiento: {{ $mantenimientos->nro_ficha }}</h4></span>
+                    <span><h4><b>Detalles del Mantenimiento: {{ $mantenimientos->nro_ficha }}</b></h4></span>
                     <a href="javascript:history.back()" class="btn btn-primary btn-sm">Volver</a>
                 </div>
 
@@ -17,27 +18,38 @@
                     <table class="table">
                         <thead>
                             <tr class="table-secondary">
-                                <th scope="col">Nro. Ficha Tecnica</th>
-                                <th scope="col">Ingreso</th>
-                                <th scope="col">Salida</th>
-                                <th scope="col">Valor del servicio</th>
-                                <th scope="col">Tipo De Mantenimiento</th>
-                                <th scope="col">Estado</th>
+                                <th scope="col"><div class="text-center">Nro. Ficha Tecnica</div></th>
+                                <th scope="col"><div class="text-center">Ingreso</div></th>
+                                <th scope="col"><div class="text-center">Salida</div></th>
+                                <th scope="col"><div class="text-center">Valor del servicio</div></th>
+                                <th scope="col"><div class="text-center">Tipo De Mantenimiento</div></th>
+                                <th scope="col"><div class="text-center">Estado</div></th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td>{{ $mantenimientos->nro_ficha}}</td>
-                                <td>{{ $mantenimientos->dia_ingre }}</td>
-                                <td>{{ $mantenimientos->dia_egre }}</td>
-                                <td>{{ $mantenimientos->costo }}</td>
+                                <td><div class="text-center">{{ $mantenimientos->nro_ficha}}</div></td>
+                                <td><div class="text-center">{{ $mantenimientos->dia_ingre }}</div></td>
+                                <td><div class="text-center">{{ $mantenimientos->dia_egre }}</div></td>
+                                <td><div class="text-center">{{ $mantenimientos->costo }}</div></td>
                                 <td>
-                                    <a href="" class="btn btn-secondary btn-sm"  onclick="return false">
-                                        {{
-                                        $tipoMante = App\Mante::findOrFail($mantenimientos->id)->tipomantes->
-                                        where('id', $mantenimientos->tipomantes_id)->value('tipomante')
-                                        }}
-                                    </a>
+                                    @if ($tipoMante = App\Mante::findOrFail($mantenimientos->id)->tipomantes->where('id', $mantenimientos->tipomantes_id)->value('id') === 1)
+
+                                        <div class="text-center">
+                                            <a>
+                                                <img class="img-responsive img-rounded" src="{{ asset('images/salud.png') }}"><br/>
+
+                                                {{
+                                                    $tipoMante = App\Mante::findOrFail($mantenimientos->id)->tipomantes->
+                                                                where('id', $mantenimientos->tipomantes_id)->value('tipomante')
+                                                }}
+
+                                            </a>
+                                        </div>
+
+                                    @else
+
+                                    @endif
                                 </td>
                                 <td>
                                     @if ($estado = App\Mante::findOrFail($mantenimientos->id)->estadomantes->where('id', $mantenimientos->estmante_id)->value('id') === 1)
@@ -120,12 +132,14 @@
         </div>
     </div>
 </div>
+
+<!-- Tabla Detallles del Vehiculo -->
 <div class="container mt-5">
     <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header d-flex justify-content-between align-items-center">
-                    <span><h4>Detalles del Vehiculo</h4></span>
+                    <span><h4><b>Detalles del Vehiculo</b></h4></span>
                 </div>
 
                 <div class="card-body">
@@ -133,30 +147,28 @@
                     <table class="table table">
                         <thead>
                           <tr class="table-secondary">
-                            <th scope="col">Placa</th>
-                            <th scope="col">Marca</th>
-                            <th scope="col">Modelo</th>
-                            <th scope="col">Color</th>
-                            <th scope="col">Tipo de Vehiculo</th>
+                            <th scope="col"><div class="text-center">Placa</div></th>
+                            <th scope="col"><div class="text-center">Marca</div></th>
+                            <th scope="col"><div class="text-center">Modelo</div></th>
+                            <th scope="col"><div class="text-center">Color</div></th>
+                            <th scope="col"><div class="text-center">Tipo de Vehiculo</div></th>
                           </tr>
                         </thead>
                         <tbody>
                             <tr>
                                 @foreach ($mante = App\Mante::findOrFail($mantenimientos->id)->vehiculos->where('id', $mantenimientos->vehi_id)->get() as $item)
-                                <td>
-                                    {{ $item->placa }}
-                                </td>
-                                <td> {{ $item->marca }} </td>
-                                <td> {{ $item->modelo }} </td>
-                                <td> {{ $item->color }} </td>
-                                <td>
-                                    {{
-                                    $data = App\Tipovehi::select('tipovehis.tipo')
-                                            ->join('vehiculos', 'vehiculos.tipovehis_id', '=', 'tipovehis.id')
-                                            ->where('vehiculos.tipovehis_id', $item->tipovehis_id)
-                                            ->first()->tipo
-                                    }}
-                                </td>
+                                    <td><div class="text-center"> {{ $item->placa }} </div></td>
+                                    <td><div class="text-center"> {{ $item->marca }} </div></td>
+                                    <td><div class="text-center"> {{ $item->modelo }} </div></td>
+                                    <td><div class="text-center"> {{ $item->color }} </div></td>
+                                    <td><div class="text-center">
+                                        {{
+                                        $data = App\Tipovehi::select('tipovehis.tipo')
+                                                ->join('vehiculos', 'vehiculos.tipovehis_id', '=', 'tipovehis.id')
+                                                ->where('vehiculos.tipovehis_id', $item->tipovehis_id)
+                                                ->first()->tipo
+                                        }}
+                                    </div></td>
                             </tr>
                                 <thead>
                                     <tr class="table-info">
@@ -176,4 +188,112 @@
     </div>
 </div>
 
+<!-- Tabla Detallles del Cliente -->
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <span><h4><b>Detalles del Cliente</b></h4></span>
+                </div>
+
+                <div class="card-body">
+
+                    <table class="table table">
+                        <thead>
+                          <tr class="table-secondary">
+                            <th scope="col"><div class="text-center">Cedula</div></th>
+                            <th scope="col"><div class="text-center">Nombre</div></th>
+                            <th scope="col"><div class="text-center">Apellidos</div></th>
+                            <th scope="col"><div class="text-center" width="210px">Direccion</div></th>
+                            <th scope="col"><div class="text-center">Telefono</div></th>
+                            <th scope="col"><div class="text-center">Email</div></th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                @foreach ($mante = App\Mante::findOrFail($mantenimientos->id)->vehiculos->where('id', $mantenimientos->vehi_id)->get() as $item)
+                                    <!-- Consultar Cedula -->
+                                    <td>
+                                        <div class="text-center">
+                                            {{
+                                                $data = App\User::select('users.*')
+                                                        ->join('vehiculos', 'vehiculos.user_id', '=', 'users.id')
+                                                        ->where('vehiculos.user_id', $item->user_id)
+                                                        ->first()->ced
+                                            }}
+                                        </div>
+                                    </td>
+                                    <!-- Consultar Nombre -->
+                                    <td>
+                                        <div class="text-center">
+                                            {{
+                                                $data = App\User::select('users.*')
+                                                        ->join('vehiculos', 'vehiculos.user_id', '=', 'users.id')
+                                                        ->where('vehiculos.user_id', $item->user_id)
+                                                        ->first()->name
+                                            }}
+                                        </div>
+                                    </td>
+                                    <!-- Consultar Apellidos -->
+                                    <td>
+                                        <div class="text-center">
+                                            {{
+                                                $data = App\User::select('users.*')
+                                                        ->join('vehiculos', 'vehiculos.user_id', '=', 'users.id')
+                                                        ->where('vehiculos.user_id', $item->user_id)
+                                                        ->first()->apepater
+                                            }}
+
+                                            {{
+                                                $data = App\User::select('users.*')
+                                                        ->join('vehiculos', 'vehiculos.user_id', '=', 'users.id')
+                                                        ->where('vehiculos.user_id', $item->user_id)
+                                                        ->first()->apemater
+                                            }}
+                                        </div>
+                                    </td>
+                                    <!-- Consultar Direccion -->
+                                    <td>
+                                        <div class="text-center">
+                                            {{
+                                                $data = App\User::select('users.*')
+                                                        ->join('vehiculos', 'vehiculos.user_id', '=', 'users.id')
+                                                        ->where('vehiculos.user_id', $item->user_id)
+                                                        ->first()->direc
+                                            }}
+                                        </div>
+                                    </td>
+                                    <!-- Consultar Telefono -->
+                                    <td>
+                                        <div class="text-center">
+                                            {{
+                                                $data = App\User::select('users.*')
+                                                        ->join('vehiculos', 'vehiculos.user_id', '=', 'users.id')
+                                                        ->where('vehiculos.user_id', $item->user_id)
+                                                        ->first()->tlf
+                                            }}
+                                        </div>
+                                    </td>
+                                    <!-- Consultar Email -->
+                                    <td>
+                                        <div class="text-center">
+                                            {{
+                                                $data = App\User::select('users.*')
+                                                        ->join('vehiculos', 'vehiculos.user_id', '=', 'users.id')
+                                                        ->where('vehiculos.user_id', $item->user_id)
+                                                        ->first()->email
+                                            }}
+                                        </div>
+                                    </td>
+                                @endforeach
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 @endsection
