@@ -28,7 +28,7 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <td><div class="text-center">{{ $mantenimientos->nro_ficha}}</div></td>
+                                <th><div class="text-center">{{ $mantenimientos->nro_ficha}}</div></th>
                                 <td><div class="text-center">{{ $mantenimientos->dia_ingre }}</div></td>
                                 <td><div class="text-center">{{ $mantenimientos->dia_egre }}</div></td>
                                 <td><div class="text-center">{{ $mantenimientos->costo }}</div></td>
@@ -48,7 +48,17 @@
                                         </div>
 
                                     @else
+                                        <div class="text-center">
+                                            <a>
+                                                <img class="img-responsive img-rounded" src="{{ asset('images/coche.png') }}"><br/>
 
+                                                {{
+                                                    $tipoMante = App\Mante::findOrFail($mantenimientos->id)->tipomantes->
+                                                                where('id', $mantenimientos->tipomantes_id)->value('tipomante')
+                                                }}
+
+                                            </a>
+                                        </div>
                                     @endif
                                 </td>
                                 <td>
@@ -157,7 +167,7 @@
                         <tbody>
                             <tr>
                                 @foreach ($mante = App\Mante::findOrFail($mantenimientos->id)->vehiculos->where('id', $mantenimientos->vehi_id)->get() as $item)
-                                    <td><div class="text-center"> {{ $item->placa }} </div></td>
+                                    <th><div class="text-center"> {{ $item->placa }} </div></th>
                                     <td><div class="text-center"> {{ $item->marca }} </div></td>
                                     <td><div class="text-center"> {{ $item->modelo }} </div></td>
                                     <td><div class="text-center"> {{ $item->color }} </div></td>
@@ -214,7 +224,7 @@
                             <tr>
                                 @foreach ($mante = App\Mante::findOrFail($mantenimientos->id)->vehiculos->where('id', $mantenimientos->vehi_id)->get() as $item)
                                     <!-- Consultar Cedula -->
-                                    <td>
+                                    <th>
                                         <div class="text-center">
                                             {{
                                                 $data = App\User::select('users.*')
@@ -223,7 +233,7 @@
                                                         ->first()->ced
                                             }}
                                         </div>
-                                    </td>
+                                    </th>
                                     <!-- Consultar Nombre -->
                                     <td>
                                         <div class="text-center">

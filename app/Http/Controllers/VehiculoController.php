@@ -22,8 +22,7 @@ class VehiculoController extends Controller
 
     public function index()
     {
-        $vehiculos = App\Vehiculo::all();
-        return view('vehiculos.consultas', compact('vehiculos'));
+        return view('vehiculos.consultas');
     }
 
     /**
@@ -69,8 +68,10 @@ class VehiculoController extends Controller
      */
     public function show($id)
     {
-        //
+        $vehiculos = App\Vehiculo::findOrFail($id);
+        return view('vehiculos.detalleConsulta', compact('vehiculos'));
     }
+
 
     /**
      * Show the form for editing the specified resource.

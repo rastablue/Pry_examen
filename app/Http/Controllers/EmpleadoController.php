@@ -19,7 +19,7 @@ class EmpleadoController extends Controller
 {
     public function __construct()
     {
-    $this->middleware('auth');
+        $this->middleware('auth');
     }
     /**
      * Display a listing of the resource.
@@ -28,8 +28,7 @@ class EmpleadoController extends Controller
      */
     public function index()
     {
-        $empleados = App\Empleado::all();
-        return view('empleados.consultas', compact('empleados'));
+        return view('empleados.consultas');
     }
 
     /**
@@ -74,8 +73,7 @@ class EmpleadoController extends Controller
      */
     public function show($id)
     {
-        $empleado = Empleado::findOrfail($id);
-        return  view('empleados.actualizar', compact('empleado'));
+
     }
 
     /**
@@ -86,7 +84,8 @@ class EmpleadoController extends Controller
      */
     public function edit($id)
     {
-        //
+        $empleado = Empleado::findOrfail($id);
+        return  view('empleados.actualizar', compact('empleado'));
     }
 
     /**

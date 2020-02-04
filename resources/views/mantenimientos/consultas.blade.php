@@ -12,34 +12,35 @@
 
                 <div class="card-body">
                     @foreach ($mantenimientos as $item)
+                    <div class="card-body">
                         <table class="table mb-5">
                             <thead>
                                 <tr class="table-secondary">
-                                    <th scope="col">{{ $loop->iteration}}</th>
-                                    <th scope="col">Nro. Ficha Tecnica</th>
-                                    <th scope="col">Ingreso</th>
-                                    <th scope="col">Placa</th>
-                                    <th scope="col">Valor del servicio</th>
+                                    <th scope="col"><div class="text-center">{{ $loop->iteration}}</div></th>
+                                    <th scope="col"><div class="text-center">Nro. Ficha Tecnica</div></th>
+                                    <th scope="col"><div class="text-center">Ingreso</div></th>
+                                    <th scope="col"><div class="text-center">Placa</div></th>
+                                    <th scope="col"><div class="text-center">Valor del servicio</div></th>
                                     <th scope="col"></th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
                                     <td></td>
-                                    <th scope="row">{{ $item->nro_ficha}}</th>
-                                    <td>{{ $item->dia_ingre }}</td>
-                                    <td>{{
+                                    <th scope="row"><div class="text-center">{{ $item->nro_ficha}}</div></th>
+                                    <td><div class="text-center">{{ $item->dia_ingre }}</div></td>
+                                    <td><div class="text-center">{{
                                         $placa = App\Mante::findOrFail($item->id)->vehiculos->where('id', $item->vehi_id)->value('placa')}}
-                                    </td>
-                                    <td>{{ $item->costo }}</td>
-                                    <td>
+                                    </div></td>
+                                    <td><div class="text-center">{{ $item->costo }}</div></td>
+                                    <td><div class="text-center">
                                         <a href="{{ route('mantenimientos.show', $item) }}">
                                             <img class="img-responsive img-rounded float-left" src="{{ asset('images/alerta.png') }}">
                                         </a>
                                         <a href="{{ route('mantenimientos.edit', $item) }}">
                                             <img class="img-responsive img-rounded float-right" src="{{ asset('images/recargar.png') }}">
                                         </a>
-                                    </td>
+                                    </div></td>
                                     <thead>
                                         <th scope="col" colspan="6" class="table-info">Observaciones:</th>
                                     </thead>
@@ -49,6 +50,8 @@
                                 </tr>
                             </tbody>
                         </table>
+                        {{ $mantenimientos->links() }}
+                    </div>
                     @endforeach
                 {{-- fin card body --}}
                 </div>

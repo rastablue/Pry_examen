@@ -25,9 +25,7 @@ class UsuarioController extends Controller
      */
     public function index()
     {
-        $user_id = auth()->user()->id;
-        $user = App\User::all();
-        return view('users.consultas', compact('user'));
+        return view('users.consultas');
     }
 
     /**
@@ -37,7 +35,7 @@ class UsuarioController extends Controller
      */
     public function create()
     {
-        //
+        return view('users.crear');
     }
 
     /**
@@ -48,7 +46,19 @@ class UsuarioController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $usuario = new User();
+        $usuario->ced = $request->ced;
+        $usuario->name = $request->name;
+        $usuario->apepater = $request->apepater;
+        $usuario->apemater = $request->apemater;
+        $usuario->direc = $request->direc;
+        $usuario->tlf = $request->tlf;
+        $usuario->email = $request->email;
+        $usuario->password = Hash::make($request->password);
+
+        $usuario->save();
+
+        return view('users.consultas');
     }
 
     /**

@@ -7,8 +7,8 @@
             <div class="card">
 
                 <div class="card-header d-flex justify-content-between align-items-center">
-                    <span>Actualizar Datos</span>
-                    <a href="/users" class="btn btn-primary btn-sm">Volver...</a>
+                    <span><h4><b>Actualizar Datos</b></h4></span>
+                    <a href="javascript:history.back()" class="btn btn-primary btn-sm">Volver</a>
                 </div>
 
                 <div class="card-body">
@@ -87,7 +87,7 @@
 
                         {{-- btn --}}
                         <div class="form-group row mb-0">
-                            <div class="col-md-6 offset-md-4">
+                            <div class="col-md-6 offset-md-5">
                                 <button type="submit" class="btn btn-primary">Actualizar</button>
                             </div>
                         </div>

@@ -3,11 +3,11 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-md-10">
             <div class="card">
 
                 <div class="card-header d-flex justify-content-between align-items-center">
-                    <span>Actualizar Datos de {{ $user->name }}    {{ $user->apepater }}</span>
+                    <span><h4><b>Actualizar Datos de: </b><i>{{ $user->name }} {{ $user->apepater }}</i></h4></span>
                     <a href="javascript:history.back()" class="btn btn-primary btn-sm">Volver</a>
                 </div>
 

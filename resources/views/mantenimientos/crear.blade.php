@@ -7,7 +7,7 @@
             <div class="col-md-8">
                 <div class="card">
                     <div class="card-header d-flex justify-content-between align-items-center">
-                        <span>Nuevo Mantenimiento</span>
+                        <span><h4><b>Nuevo Mantenimiento</b></h4></span>
                         <a href="javascript:history.back()" class="btn btn-primary btn-sm">Volver</a>
                     </div>
 
@@ -97,7 +97,7 @@
 
                             {{-- btn --}}
                             <div class="form-group row mb-0">
-                                <div class="col-md-6 offset-md-4">
+                                <div class="col-md-6 offset-md-5">
                                     <button type="submit" class="btn btn-primary">
                                         {{ __('Registrar') }}
                                     </button>

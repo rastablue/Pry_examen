@@ -1,5 +1,5 @@
 @extends('layouts.app')
-
+{{ $user = App\User::paginate(8) }}
 @section('content')
 
 <div class="container">
@@ -46,6 +46,7 @@
                             @endforeach
                         </tbody>
                     </table>
+                    {{ $user->links() }}
                 {{-- fin card body --}}
                 </div>
             </div>

@@ -31,7 +31,7 @@ class MantenimientoController extends Controller
      */
     public function index()
     {
-        $mantenimientos = App\Mante::all();
+        $mantenimientos = App\Mante::paginate(3);
         return view('mantenimientos.consultas', compact('mantenimientos'));
     }
 
