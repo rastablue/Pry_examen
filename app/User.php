@@ -28,8 +28,7 @@ class User extends Authenticatable
 
     public function mantenimientos()
     {
-        return $this->hasManyThrough(
-            Mante::class, Vehiculo::class, 'user_id', 'vehi_id', 'id', 'id');
+        return $this->hasManyThrough(Mante::class, Vehiculo::class, 'user_id', 'vehi_id', 'id', 'id');
     }
 
     protected $fillable = [

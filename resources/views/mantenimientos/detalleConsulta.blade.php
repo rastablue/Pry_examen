@@ -9,7 +9,7 @@
             <div class="card">
 
                 <div class="card-header d-flex justify-content-between align-items-center">
-                    <span><h4><b>Detalles del Mantenimiento: {{ $mantenimientos->nro_ficha }}</b></h4></span>
+                    <span><h4><b>Detalles del Mantenimiento:</b><i> {{ $mantenimientos->nro_ficha }}</i></h4></span>
                     <a href="javascript:history.back()" class="btn btn-primary btn-sm">Volver</a>
                 </div>
 

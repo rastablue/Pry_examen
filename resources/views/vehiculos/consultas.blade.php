@@ -7,38 +7,30 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header d-flex justify-content-between align-items-center">
-                    <span>Lista de Vehiculos {{auth()->user()->name}}</span>
+                    <span><h4><b>Lista de Vehiculos:</b></h4></span>
                 </div>
 
                 <div class="card-body">
                     <table class="table">
                         <thead>
-                            <tr>
-                            <th scope="col">ID</th>
-                            <th scope="col">Placa</th>
-                            <th scope="col">Marca</th>
-                            <th scope="col">Modelo</th>
-                            <th scope="col">Color</th>
-                            <th scope="col">Observacion</th>
+                            <tr class="table-secondary">
+                            <th scope="col"></th>
+                            <th scope="col"><div class="text-center">Placa</div></th>
+                            <th scope="col"><div class="text-center">Marca</div></th>
+                            <th scope="col"><div class="text-center">Modelo</div></th>
+                            <th scope="col"><div class="text-center">Color</div></th>
+                            <th scope="col"><div class="text-center">Observacion</div></th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach ($vehiculos as $item)
                             <tr>
-                                <th scope="row">{{ $item->id }}</th>
-                                <td>{{ $item->placa }}</td>
-                                <td>{{ $item->marca }}</td>
-                                <td>{{ $item->modelo }}</td>
-                                <td>{{ $item->color }}</td>
-                                <td>{{ $item->observa }}</td>
-                                {{-- <td>
-                                @if ($item->estado==='a')
-                                    <button class="btn btn-success btn-sm" type="submit" disabled="true">En proceso</button>
-
-                                @else
-                                    <button class="btn btn-danger btn-sm" type="submit" disabled="true">Finalizado</button>
-                                @endif
-                            </td> --}}
+                                <th scope="row"><i>{{ $loop->iteration }}</i></th>
+                                <th><div class="text-center">{{ $item->placa }}</div></th>
+                                <td><div class="text-center">{{ $item->marca }}</div></td>
+                                <td><div class="text-center">{{ $item->modelo }}</div></td>
+                                <td><div class="text-center">{{ $item->color }}</div></td>
+                                <td><div class="text-center">{{ $item->observa }}</div></td>
                             </tr>
                             @endforeach
                         </tbody>

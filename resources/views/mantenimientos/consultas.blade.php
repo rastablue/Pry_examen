@@ -7,7 +7,7 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header d-flex justify-content-between align-items-center">
-                    <span>Lista de Tramites</span>
+                    <span><h4><b>Lista de Tramites</b></h4></span>
                 </div>
 
                 <div class="card-body">
@@ -26,7 +26,7 @@
                             <tbody>
                                 <tr>
                                     <td></td>
-                                    <td>{{ $item->nro_ficha}}</td>
+                                    <th scope="row">{{ $item->nro_ficha}}</th>
                                     <td>{{ $item->dia_ingre }}</td>
                                     <td>{{
                                         $placa = App\Mante::findOrFail($item->id)->vehiculos->where('id', $item->vehi_id)->value('placa')}}
