@@ -23,11 +23,13 @@ class User extends Authenticatable
     public function tipovehiculos()
     {
         return $this->hasManyThrough(
-            Tipovehi::class, //Parámetro 1 es el modelo objetivo o destino
-            Vehiculo::class, //Parámetro 2 es el modelo intermedio o a través del cual pasaremos para lograr obtener datos
-            'tipovehis_id', //Clave foránea en la tabla intermedia que en este caso la nombre tipovehis_id en la tabla vehiculos
-            'id', //Clave primaria en la tabla origen que sería en este ejemplo id en la tabla Users
-            'id'); //Clave primaria en la tabla objetivo que en este ejemplo sería id en la tabla tipo_vehiculos
+            Tipovehi::class, Vehiculo::class, 'tipovehis_id', 'id', 'id','id');
+    }
+
+    public function mantenimientos()
+    {
+        return $this->hasManyThrough(
+            Mante::class, Vehiculo::class, 'user_id', 'vehi_id', 'id', 'id');
     }
 
     protected $fillable = [

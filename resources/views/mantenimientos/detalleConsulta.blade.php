@@ -120,7 +120,6 @@
         </div>
     </div>
 </div>
-
 <div class="container mt-5">
     <div class="row justify-content-center">
         <div class="col-md-12">
@@ -142,47 +141,32 @@
                           </tr>
                         </thead>
                         <tbody>
-                          <tr>
-                            <td>
-                                {{
-                                $placa = App\Mante::findOrFail($mantenimientos->id)->vehiculos->where('id', $mantenimientos->vehi_id)->value('placa')
-                                }}
-                            </td>
-                            <td>
-                                {{
-                                $marca = App\Mante::findOrFail($mantenimientos->id)->vehiculos->where('id', $mantenimientos->vehi_id)->value('marca')
-                                }}
-                            </td>
-                            <td>
-                                {{
-                                $modelo = App\Mante::findOrFail($mantenimientos->id)->vehiculos->where('id', $mantenimientos->vehi_id)->value('modelo')
-                                }}
-                            </td>
-                            <td>
-                                {{
-                                $color = App\Mante::findOrFail($mantenimientos->id)->vehiculos->where('id', $mantenimientos->vehi_id)->value('color')
-                                }}
-                            </td>
-                            <td>
-                                {{
-                                $ss = App\Mante::findOrFail($mantenimientos->id)->tipovehiculos->
-                                where('id', $mantenimientos->vehi_id)->first()
-                                }}
-                            </td>
-                          </tr>
-                            <thead>
-                                <tr class="table-info">
-                                    <th scope="col" colspan="5">Observaciones:</th>
-                                </tr>
-                            </thead>
-                          <tr>
-                            <td colspan="5">
-                                {{
-                                $observa = App\Mante::findOrFail($mantenimientos->id)->vehiculos->where('id', $mantenimientos->vehi_id)->value('observa')
-                                }}
-                            </td>
-                          </tr>
-
+                            <tr>
+                                @foreach ($mante = App\Mante::findOrFail($mantenimientos->id)->vehiculos->where('id', $mantenimientos->vehi_id)->get() as $item)
+                                <td>
+                                    {{ $item->placa }}
+                                </td>
+                                <td> {{ $item->marca }} </td>
+                                <td> {{ $item->modelo }} </td>
+                                <td> {{ $item->color }} </td>
+                                <td>
+                                    {{
+                                    $data = App\Tipovehi::select('tipovehis.tipo')
+                                            ->join('vehiculos', 'vehiculos.tipovehis_id', '=', 'tipovehis.id')
+                                            ->where('vehiculos.tipovehis_id', $item->tipovehis_id)
+                                            ->first()->tipo
+                                    }}
+                                </td>
+                            </tr>
+                                <thead>
+                                    <tr class="table-info">
+                                        <th scope="col" colspan="5">Observaciones:</th>
+                                    </tr>
+                                </thead>
+                            <tr>
+                                <td colspan="5"> {{ $item->observa }} </td>
+                            @endforeach
+                            </tr>
                         </tbody>
                     </table>
 
