@@ -32,3 +32,7 @@ Route::resource('vehiculos', 'VehiculoController');
 Route::resource('empleados', 'EmpleadoController');
 
 Route::resource('mantenimientos', 'MantenimientoController');
+
+Route::get('busqueda/empleados', 'EmpleadoController@busqueda')->name('buscaemp');
+
+Route::PUT('busqueda/empleados/pos', 'EmpleadoController@busqueda')->name('busca');

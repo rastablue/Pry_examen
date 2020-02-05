@@ -168,7 +168,7 @@
                                                                 </a>
                                                             </li>
                                                             <li>
-                                                                <a href="">Agregar Usuario</a>
+                                                                <a href="{{ route('users.create') }}">Agregar Usuario</a>
                                                             </li>
                                                             <li>
                                                                 <a href="#">Actualizar Usuario</a>
@@ -220,26 +220,26 @@
                                                 </li>
 
                                             <!-- Menu Empleados  -->
-                                            <li class="sidebar-dropdown">
-                                                <a href="#">
-                                                    <img class="img-responsive img-rounded" src="{{ asset('images/empleado.png') }}">
-                                                    <span>Empleados</span>
-                                                </a>
-                                                <div class="sidebar-submenu">
-                                                    <ul>
-                                                        <li>
-                                                            <a href="/empleados">Consultar Empleados</a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="{{ route('empleados.create') }}">Agregar Empleados</a>
-                                                        </li>
-                                                        <li>
-                                                            {{ $emp = 1}}
-                                                            <a href="{{ route('empleados.edit', $emp) }}">Actualizar Empleados</a>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </li>
+                                                <li class="sidebar-dropdown">
+                                                    <a href="#">
+                                                        <img class="img-responsive img-rounded" src="{{ asset('images/empleado.png') }}">
+                                                        <span>Empleados</span>
+                                                    </a>
+                                                    <div class="sidebar-submenu">
+                                                        <ul>
+                                                            <li>
+                                                                <a href="/empleados">Consultar Empleados</a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="{{ route('empleados.create') }}">Agregar Empleados</a>
+                                                            </li>
+                                                            <li>
+                                                                {{ $emp = 1}}
+                                                                <a href="{{ route('empleados.edit', $emp) }}">Actualizar Empleados</a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </li>
 
                                         </ul>
                                     </div>

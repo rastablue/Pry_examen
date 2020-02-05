@@ -31,6 +31,16 @@ class EmpleadoController extends Controller
         return view('empleados.consultas');
     }
 
+    public function busqueda()
+    {
+            return view('empleados.actualizarConsulta');
+    }
+
+    public function busca(Request $request)
+    {
+        $empleado = Empleado::where('name', 'LIKE', "%ver%");
+        return view('empleados.pru', compact('empleado'));
+    }
     /**
      * Show the form for creating a new resource.
      *
