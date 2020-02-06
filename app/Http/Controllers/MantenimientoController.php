@@ -16,6 +16,7 @@ use App\Empleado;
 use App\Mante;
 use App\Tipomante;
 use Carbon\Carbon;
+use App\Historial;
 
 
 class MantenimientoController extends Controller
@@ -44,6 +45,13 @@ class MantenimientoController extends Controller
     {
         $tipomantes = Tipomante::all();
         return view('mantenimientos.crear', compact('tipomantes'));
+    }
+
+    public function asignar()
+    {
+        $mantenimientos = Mante::all();
+        $empleados = Empleado::all();
+        return view('mantenimientos.asignar', compact('mantenimientos', 'empleados'));
     }
 
     /**
@@ -93,7 +101,9 @@ class MantenimientoController extends Controller
      */
     public function edit($id)
     {
-        //
+        $mantenimientos = App\Mante::findOrFail($id);
+        $tipomantes = Tipomante::all();
+        return view('mantenimientos.actualizar', compact('mantenimientos', 'tipomantes'));
     }
 
     /**
@@ -105,7 +115,29 @@ class MantenimientoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $date = Carbon::now();
+        $hist = new App\Historial();
+        $placa = $request->placa;
+        $vehi_id = Vehiculo::where('placa', $placa)->first();
+
+        $mantenimiento = App\Mante::findOrFail($id);
+
+        $mantenimiento->nro_ficha = $request->numficha;
+        $mantenimiento->nro_ficha = $request->numficha;
+        $mantenimiento->observa = $request->observa;
+        $mantenimiento->costo = $request->costo;
+        $mantenimiento->vehi_id = $vehi_id->id;
+        $mantenimiento->estmante_id = $request->estadomantes_id;
+            if ($request->estadomantes_id == 4 && $mantenimiento->dia_egre) {
+                $mantenimiento->dia_egre = $date;
+            }
+        $mantenimiento->tipomantes_id = $request->tipomantes_id;
+
+        $mantenimiento->save();
+
+        $mantenimientos = App\Mante::paginate(3);
+
+        return view('mantenimientos.consultas', compact('mantenimientos'));
     }
 
     /**

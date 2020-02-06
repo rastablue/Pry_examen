@@ -215,6 +215,9 @@
                                                             <li>
                                                                 <a href="#">Actualizar Mantenimientos</a>
                                                             </li>
+                                                            <li>
+                                                                <a href="{{ route('mantenimientos.asig') }}">Asignar Empleados</a>
+                                                            </li>
                                                         </ul>
                                                     </div>
                                                 </li>
@@ -234,8 +237,7 @@
                                                                 <a href="{{ route('empleados.create') }}">Agregar Empleados</a>
                                                             </li>
                                                             <li>
-                                                                {{ $emp = 1}}
-                                                                <a href="{{ route('empleados.edit', $emp) }}">Actualizar Empleados</a>
+                                                                <a href="/busqueda/empleados">Actualizar Empleados</a>
                                                             </li>
                                                         </ul>
                                                     </div>

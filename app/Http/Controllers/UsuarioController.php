@@ -108,7 +108,7 @@ class UsuarioController extends Controller
 
         $users->save();
 
-        return view('home');
+        return view('users.consultas');
     }
 
     /**

@@ -13,8 +13,7 @@ class Mante extends Model
 
     public function tipovehiculos()
     {
-        return $this->hasManyThrough(
-            Tipovehi::class, Vehiculo::class, 'tipovehis_id', 'id', 'id', 'tipovehis_id');
+        return $this->hasManyThrough(Tipovehi::class, Vehiculo::class, 'tipovehis_id', 'id', 'id', 'tipovehis_id');
     }
 
     public function empleados()

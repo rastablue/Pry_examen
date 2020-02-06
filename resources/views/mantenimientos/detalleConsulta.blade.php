@@ -108,17 +108,20 @@
 
                                             @else
 
-                                                <div class="text-center">
-                                                    <a>
-                                                        <img class="img-responsive img-rounded" src="{{ asset('images/correcto.png') }}"><br/>
+                                                @if ($estado = App\Mante::findOrFail($mantenimientos->id)->estadomantes->where('id', $mantenimientos->estmante_id)->value('id') === 4)
 
-                                                        {{
-                                                            $estado = App\Mante::findOrFail($mantenimientos->estmante_id)->estadomantes->
-                                                            where('id', $mantenimientos->estmante_id)->value('estadomante')
-                                                        }}
+                                                    <div class="text-center">
+                                                        <a>
+                                                            <img class="img-responsive img-rounded" aria-hidden="true" src="{{ asset('images/correcto.png') }}"><br/>
 
-                                                    </a>
-                                                </div>
+                                                            {{
+                                                                $estado = App\Mante::findOrFail($mantenimientos->id)->estadomantes->
+                                                                where('id', $mantenimientos->estmante_id)->value('estadomante')
+                                                            }}
+
+                                                        </a>
+                                                    </div>
+                                                @endif
 
                                             @endif
                                         @endif
